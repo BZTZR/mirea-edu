@@ -12,12 +12,12 @@ s — секунды (обязательно двузначные).
 int main()
 {
     int n;
-    std::cout << "From seconds to time at the beginning of the day\n";
-    std::cout << "Enter the seconds that have passed since the beginning of the day\n";
+    std::cout << "From seconds to time\n";
+    std::cout << "Enter the seconds that have passed since the beginning of the day(from 00:00:00)\n";
     std::cin>> n;
     if (n >= 86400)
     {
-        std::cout << "The number of seconds went beyond the day. Restart the program\n";
+        std::cout << "The number of seconds went beyond the day. 1 day = 86400 seconds. Restart the program\n";
         return 0;
     }
     else
@@ -39,4 +39,3 @@ int main()
         return 0;
     }
 }
-
