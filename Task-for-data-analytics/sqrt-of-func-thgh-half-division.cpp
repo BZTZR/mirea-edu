@@ -10,8 +10,8 @@ int main() {
     while (b - a > eps) {
         double mid = (a + b) / 2;
         double f_mid = acos(mid) - sqrt(1 - 0.3*mid*mid*mid);
-        
-        if (f_mid > 0) {
+        double f_a = acos(a) - sqrt(1 - 0.3*a*a*a);
+        if (f_mid * f_a > 0) {
             a = mid;  
         } else {
             b = mid;  
