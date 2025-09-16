@@ -2,6 +2,7 @@
 using namespace std;
 
 int main() {
+    cout << "Enter 2 numbers through enter. Example: 41 (Enter button) 7 (Enter button)" << endl;
     int A, B;
     cin >> A >> B;
     
