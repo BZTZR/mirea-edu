@@ -3,41 +3,80 @@
 #include <vector>
 using namespace std;
 
-bool isPerfectSquare(long long n) {
-    long long root = sqrt(n);
-    return root * root == n;
+// Проверка на квадрат
+bool isSquare(long long num) {
+    long long root = sqrt(num);
+    return root * root == num;
 }
 
-void fermatFactorization(int n) {
-    if (n % 2 == 0) {
-        cout << "Only odd numbers" << endl;
+// рекурсивное разложение на множители
+void findFactors(int num, vector<int>& factors) {
+    // Если число 1 - выходим
+    if (num == 1) return;
+    
+    // простое ли число
+    bool prime = true;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            prime = false;
+            break;
+        }
+    }
+    
+    // Если да - то в множители
+    if (prime) {
+        factors.push_back(num);
         return;
     }
     
-    cout << "Factorization of number " << n << " by Fermat method:" << endl;
+    // метод Ферма
+    int start = ceil(sqrt(num));  // Начинаем с корня
+    int diff = start * start - num;  // Разность квадратов
     
-    int a = ceil(sqrt(n));
-    int b2 = a * a - n;
-    
-    while (!isPerfectSquare(b2)) {
-        a++;
-        b2 = a * a - n;
+    // Ищем подходящую разность
+    while (!isSquare(diff)) {
+        start++;
+        diff = start * start - num;
     }
     
-    int b = sqrt(b2);
-    int factor1 = a - b;
-    int factor2 = a + b;
+    // Находим множители
+    int root = sqrt(diff);
+    int factor1 = start - root;
+    int factor2 = start + root;
     
-    cout << "Multipliers: " << factor1 << " * " << factor2 << " = " << n << endl;
-    cout << "Check: " << factor1 << " * " << factor2 << " = " << factor1 * factor2 << endl;
+    // Рекурсивно разлагаем оба множителя
+    findFactors(factor1, factors);
+    findFactors(factor2, factors);
+}
+
+// Главная функция факторизации
+void factorize(int num) {
+    // Метод Ферма работает только с нечетными
+    if (num % 2 == 0) {
+        cout << "Only odd" << endl;
+        return;
+    }
+    
+    cout << "Factorizing " << num << " by Ferma method:" << endl;
+    
+    vector<int> factors;
+    findFactors(num, factors);
+    
+    // Выводим результат
+    cout << "Answer: ";
+    for (int i = 0; i < factors.size(); i++) {
+        if (i > 0) cout << " * ";
+        cout << factors[i];
+    }
+    cout << " = " << num << endl;
 }
 
 int main() {
-    int number;
-    cout << "Enter an odd number for the Fermat factorization: ";
-    cin >> number;
+    int num;
+    cout << "Enter a odd nubmer: ";
+    cin >> num;
     
-    fermatFactorization(number);
+    factorize(num);
     
     return 0;
 }
