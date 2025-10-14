@@ -25,7 +25,10 @@ int main()
 {
     int a,b,c,d;
     cin>>a>>b>>c>>d;
-    if(a <= 0 or b <= 0 or c <= 0 or d <= 0):
-        print("Error")
-    cout<<gcd(a,gcd(b,gcd(c,d)));
+    if(a <= 0 or b <= 0 or c <= 0 or d <= 0){
+        cout<<"Error. The numbers need to be more than 0"<<endl;
+    }
+    else{
+        cout<<gcd(a,gcd(b,gcd(c,d)));
+    }
 }
