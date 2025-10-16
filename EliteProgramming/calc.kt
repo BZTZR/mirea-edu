@@ -1,4 +1,5 @@
 import kotlin.math.pow
+
 fun main() {
     println("calc.kt\n")
     println("Добро пожаловать в калькулятор!")
@@ -10,50 +11,42 @@ fun main() {
             "и программу придется перезапускать.")
     println("Удачных Ариф. операций!!!")
 
+
     while(true){
-        var op = readln()
-        var a = readln().toDouble()
-        var b = readln().toDouble()
+        val op = readln()
+        
+        println("Введите числа через пробел:")
+        val numbers = readln().split(" ").map { it.toDouble() }
+        
         when(op){
-            "+" ->{
-                println(summa(a,b))
-            }
-            "-" ->{
-                println(vichet(a,b))
-            }
-            "*" ->{
-                println(multy(a,b))
-            }
-            "/" ->{
-                println(division(a,b))
-            }
-            "%" ->{
-                println(ostdiv(a,b))
-            }
-            "^" ->{
-                println(step(a,b))
-            }
-            else ->{
-                println("ошибка! Что-то пошло не так. Попробуй еще раз")
-            }
+            "+" -> println(summa(numbers))
+            "*" -> println(multy(numbers))
+            "-" -> println(vichet(numbers[0], numbers[1]))
+            "/" -> println(division(numbers[0], numbers[1]))
+            "%" -> println(ostdiv(numbers[0], numbers[1]))
+            "^" -> println(step(numbers[0], numbers[1]))
+            else -> println("Ошибка!")
         }
     }
 }
-fun summa(a:Double,b:Double):Double{
-    return a + b
+
+fun summa(numbers: List<Double>): Double {
+    var result = 0.0
+    for (num in numbers) {
+        result += num
+    }
+    return result
 }
-fun vichet(a:Double,b:Double):Double{
-    return a - b
+
+fun multy(numbers: List<Double>): Double {
+    var result = 1.0
+    for (num in numbers) {
+        result *= num
+    }
+    return result
 }
-fun multy(a:Double,b:Double):Double{
-    return a * b
-}
-fun division(a:Double,b:Double):Double{
-    return a / b
-}
-fun ostdiv(a:Double,b:Double):Double{
-    return a % b
-}
-fun step(a:Double,b:Double):Double{
-    return a.pow(b)
-}
+
+fun vichet(a: Double, b: Double): Double = a - b
+fun division(a: Double, b: Double): Double = a / b
+fun ostdiv(a: Double, b: Double): Double = a % b
+fun step(a: Double, b: Double): Double = a.pow(b)
