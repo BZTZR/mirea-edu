@@ -7,8 +7,14 @@ void f(vector<int>& v) {
     for (int i : v){
         cout << i << " ";
     }
+    cout<<"- an array without duplicates"<<endl;
 }
 int main() {
-    vector<int> kek{4,783,1,2,5,7,1,5,5,5,7,8,1,5,7,};
+    cout<<"Enter the numbers for the array separated by a space and enter 0 if you want to finish filling in the vector array."<<endl;
+    int x;
+    vector<int> kek;
+    while(cin>>x and x != 0){
+        kek.push_back(x);
+    }
     f(kek);
 }
