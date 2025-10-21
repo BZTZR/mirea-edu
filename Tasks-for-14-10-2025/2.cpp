@@ -14,8 +14,10 @@ bool f(const string &j, const string &k) {
     return true;
 }
 int main() {
-    string j = "SFsksfF";
-    string k = "SfSfsff";
+    cout << "enter 2 strings on the same line"
+    string j;//"SFsksfF";
+    string k;//"SfSfsff";
+    cin >> j >> k;
     if (f(j,k) == 1){
         cout<<"equal\n";
     }
