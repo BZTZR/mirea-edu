@@ -12,12 +12,17 @@ fun main() {
     println("Удачных Ариф. операций!!!")
 
 
-    while(true){
-        val op = readln()
-        
-        println("Введите числа через пробел:")
-        val numbers = readln().split(" ").map { it.toDouble() }
-        
+    while(true) {
+    val op = readln()
+    
+    println("Введите числа через пробел:")
+    val input = readln()
+    val numbers = try {
+        input.split(" ").map { it.toDouble() }
+    } catch (e: NumberFormatException) {
+        println("Ошибка! Вводите только числа.")
+        continue
+    }
         when(op){
             "+" -> println(summa(numbers))
             "*" -> println(multy(numbers))
