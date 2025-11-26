@@ -23,7 +23,7 @@ int main() {
 
     string combined = P + "#" + S;
     vector<int> pi = prefix_function(combined);
-
+    cout<<"The pattern '"<<P<< "' occurs in the string '"<<S<<"' at the positions:\n";
     for (int i = (int)P.size() + 1; i < (int)combined.size(); i++) {
         if (pi[i] == (int)P.size()) {
             cout << i - 2 * (int)P.size() << " ";
