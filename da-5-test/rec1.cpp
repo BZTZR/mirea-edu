@@ -1,38 +1,41 @@
 #include <iostream>
 using namespace std;
 
-int gcd(int a, int b) {
-    if (b == 0) return a;
-    if(a>b){
-        return gcd(a-b, b);
-    }
-    else{
-        return gcd(a, b-a);
-    }
-    
+int gcd_sub(int a, int b) {
+    if (a == b)
+        return a;
+    if (a > b)
+        return gcd_sub(a - b, b);
+    else
+        return gcd_sub(a, b - a);
 }
 
 int main() {
     int a, b;
-    cout << "enter 2 numbers(0 & 0 will get an error): ";
+
+    cout << "Enter two integers (not both zeros): ";
     while (true) {
-        if (!(cin >> a >> b)) { 
-            cout << "Entering error. Enter 2 numbers: ";
+        if (!(cin >> a >> b)) {
+            cout << "Input error. Enter two integers: ";
             cin.clear();
             cin.ignore(10000, '\n');
             continue;
         }
-        
+
         a = abs(a);
         b = abs(b);
 
-        if (a == 0 && b == 0) {
-            cout << "2 numbers can't be 0 & 0. Enter again: ";
+        if (a == 0 && b == 0) { 
+            cout << "Both numbers cannot be zero. Try again: ";
             continue;
         }
         break;
     }
 
-    cout << "result = " << gcd(a, b) << endl;
+    if (a == 0 || b == 0)
+        cout << "GCD = " << (a == 0 ? b : a) << endl;
+    else
+        cout << "GCD = " << gcd_sub(a, b) << endl;
+
     return 0;
 }
